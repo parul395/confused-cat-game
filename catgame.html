@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"
+    name = "viewport" content = "width=device-width, initial-scale=1, user-scalable=yes">
+    <title>CatGame</title>
+     <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" 
+         rel = "stylesheet">
+      <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+      <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+     
+    
+      
+    <style>
+        
+        html{
+            background-image: url("grass.jpg");
+            height:100%;
+            background-size: 100% 100%;
+           
+        }
+       
+        #q{left:500px;
+           position:absolute;
+            width:300px;
+            height:40px;
+            border-radius:40px;
+            box-shadow: 4px 4px #7261c6;
+            font-weight: bold;
+            font-size:30px;
+            cursor:pointer;
+        }
+        #sub2{
+            
+            top:100px;
+           position:absolute;
+            width:100px;
+            height:40px;
+            border-radius:40px;
+            box-shadow: 4px 4px #7261c6;
+            font-weight: bold;
+            font-size:20px;
+        cursor:pointer;
+        }
+        #cat{
+            width:150px;
+            height:150px;
+          background-image: url("c.jpg");
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            border-radius:90px;
+            margin-left:20px;
+            border: 2px solid black;
+            position:relative; z-index: 1;
+          display:none;
+            cursor:pointer;
+        }
+         #family{
+            width:150px;
+            height:150px;
+          background-image: url("family.jpg");
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            border-radius:90px;
+            margin-left:20px;
+            border: 2px solid black;
+             position:absolute;
+            
+            top:500px;display:none;
+             left:200px;
+        }
+         #dog{position:absolute;
+            width:150px;
+            height:150px;
+          background-image: url("dog.jpg");
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            border-radius:90px;
+            margin-left:20px;
+            border: 2px solid black;
+             left:500px;
+             top:200px;display:none;
+             
+        }
+        #name:hover{
+            background-color: #ca63ce;
+            box-shadow: 4px 4px #094336;
+            color:#621466;
+        }
+        #name:active{
+            background-color: #e9a0ed;
+            box-shadow: 4px 4px #094336;
+        }
+         #human{position:absolute;
+            width:150px;
+            height:150px;
+          background-image: url("human.jpg");
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            border-radius:90px;
+            margin-left:20px;
+            border: 2px solid black;
+             left:1000px;
+             top:290px;
+             
+             display:none;
+        }
+        #namee{position:absolute;
+            height: 150px;
+            width:400px;
+            padding:10px;
+            top:200px;
+            left:500px;
+            border-radius:40px;
+            display:none;
+        }
+         
+    </style>
+   
+   
+
+    </head>
+    <body>
+        
+    <div id="con">
+        <h1 class="ui-state-error" >THE CONFUSED CAT</h1></div>
+        
+            <button id="q" class="ui-state-error" class="ui-widget-content" >start</button>
+            
+       
+    <div id="cat" class="ui-widget-content">
+        <p style="font-weight:bold; color: #000000; position:absolute;top:100px; left:20px">HELP ME!</p>
+        
+        </div>
+        <div id="family" class="droppable">
+        </div>
+                <div id="dog" class="droppable2" ></div>
+        <div id="human" class="droppable2" ></div>
+        <div id="namee"  class="ui-state-error">
+        <p style="font-size: 20px ; font-weight:bold  ">ENTER NAME OF YOUR CAT:</p><input type="text" id="name">
+            <div >
+            <button id="sub2">SUBMIT</button></div>
+        </div>
+       
+             
+        <script>
+            var msg = ["I miss family", "EW,HUMANS","NO,NOT DOGS","I need you"];
+       
+            $(function(){
+
+                
+              $("#q").click(function(){
+                  $("#namee").fadeIn();
+                  $("#sub2").click(function(){
+                    
+                 $("#namee").fadeOut(1000,window.alert("HELP!! YOUR CAT IS STUCK ON TREE. HELP THE CAT TO GET BACK TO THE RIGHT FAMILY."));
+                $("#cat").fadeIn();
+                $("#family").fadeIn();
+                $("#dog").fadeIn();
+                $("#human").fadeIn();
+                       $("#cat").draggable({
+                           start: function(){
+                               
+                           },
+                           drag: function(){
+                               $(this).css("background-image","url('confu.jpg')");
+                               $("#cat").find("p").html(msg[Math.floor(4*Math.random())]);
+                           },
+                           stop: function(){
+                               $(this).css("background-image","url('hap.jpg')");
+                               $("#cat").html("<p>Finally! I am home.");
+                           }
+                       });
+                      
+                   $(".droppable").droppable({
+                       drop: function(){
+                           
+                           $(this).css("background-image","url('yay.jpg')");
+                       }
+                      
+                   });
+                       $(".droppable1").droppable({
+                       drop: function(){
+                           
+                           $(this).css("background-image","url('no.jpg')");
+                       },
+                      
+                   });
+                       $(".droppable2").droppable({
+                       drop: function(){
+                           
+                           $(this).css("background-image","url('no.jpg')");
+                       }
+                      
+                   });
+                }
+             );
+                  
+              });
+                  
+                
+                
+                
+              
+                
+                
+            });
+              
+           
+            
+        
+        
+        </script>
+    
+    </body>
+</html>
